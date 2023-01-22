@@ -15,4 +15,21 @@ class MethodChannelMyPlugin extends MyPluginPlatform {
         await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
+
+  @override
+  Future<String?> getMessage() async {
+    final message = await methodChannel.invokeMethod<String>('getMessage');
+    return message;
+  }
+
+  @override
+  Future<String?> getLocale() async {
+    final locale = await methodChannel.invokeMethod<String>('getLocale');
+    return locale;
+  }
+
+  @override
+  Future<void> openSettings() async {
+    await methodChannel.invokeMethod<bool>('openSettings');
+  }
 }

@@ -13,6 +13,10 @@ void main() {
       switch (methodCall.method) {
         case "getPlatformVersion":
           return '42';
+        case "getMessage":
+          return 'Hello';
+        case "getLocale":
+          return 'en';
         default:
           return Exception("No such mock method");
       }
@@ -25,5 +29,13 @@ void main() {
 
   test('getPlatformVersion', () async {
     expect(await platform.getPlatformVersion(), '42');
+  });
+
+  test('getMessage', () async {
+    expect(await platform.getMessage(), 'Hello');
+  });
+
+  test('getLocale', () async {
+    expect(await platform.getLocale(), 'en');
   });
 }

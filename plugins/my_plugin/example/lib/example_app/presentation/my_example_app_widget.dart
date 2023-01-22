@@ -15,8 +15,18 @@ class MyExampleAppWidget extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Plugin example app'),
           ),
-          body: Center(
-            child: Text('Running on: ${state.platform}'),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(child: Text('Running on: ${state.platform}')),
+              Center(child: Text('Message: ${state.message}')),
+              Center(child: Text('Locale: ${state.locale}')),
+              ElevatedButton(
+                  onPressed:
+                      BlocProvider.of<MyExampleAppCubit>(context).openSettings,
+                  child: Text('Open Settings'))
+            ],
           ),
         ),
       );

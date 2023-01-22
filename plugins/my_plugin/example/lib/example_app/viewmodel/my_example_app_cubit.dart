@@ -4,8 +4,11 @@ import 'package:my_plugin_example/example_app/viewmodel/my_example_app_state.dar
 
 class MyExampleAppCubit extends Cubit<MyExampleAppState> {
   MyExampleAppCubit()
-      : super(MyExampleAppState(platform: "Unknown platform version")) {
+      : super(MyExampleAppState(
+            platform: "Unknown platform version", message: "", locale: "")) {
     getPlatformVersion();
+    getMessage();
+    getLocale();
   }
 
   final MyPlugin _plugin = MyPlugin();
@@ -14,5 +17,17 @@ class MyExampleAppCubit extends Cubit<MyExampleAppState> {
     _plugin
         .getPlatformVersion()
         .then((value) => emit(state.copyWith(platform: value)));
+  }
+
+  void getMessage() {
+    _plugin.getMessage().then((value) => emit(state.copyWith(message: value)));
+  }
+
+  void getLocale() {
+    _plugin.getLocale().then((value) => emit(state.copyWith(locale: value)));
+  }
+
+  void openSettings() {
+    _plugin.openSettings();
   }
 }

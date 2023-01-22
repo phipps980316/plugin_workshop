@@ -7,9 +7,19 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockMyPluginPlatform
     with MockPlatformInterfaceMixin
     implements MyPluginPlatform {
-
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
+
+  @override
+  Future<String?> getLocale() => Future.value('en');
+
+  @override
+  Future<String?> getMessage() => Future.value('Hello');
+
+  @override
+  Future<void> openSettings() {
+    throw UnimplementedError();
+  }
 }
 
 void main() {
@@ -25,5 +35,21 @@ void main() {
     MyPluginPlatform.instance = fakePlatform;
 
     expect(await myPlugin.getPlatformVersion(), '42');
+  });
+
+  test('getLocale', () async {
+    MyPlugin myPlugin = MyPlugin();
+    MockMyPluginPlatform fakePlatform = MockMyPluginPlatform();
+    MyPluginPlatform.instance = fakePlatform;
+
+    expect(await myPlugin.getLocale(), 'en');
+  });
+
+  test('getMessage', () async {
+    MyPlugin myPlugin = MyPlugin();
+    MockMyPluginPlatform fakePlatform = MockMyPluginPlatform();
+    MyPluginPlatform.instance = fakePlatform;
+
+    expect(await myPlugin.getMessage(), 'Hello');
   });
 }

@@ -12,6 +12,18 @@ public class SwiftMyPlugin: NSObject, FlutterPlugin {
     switch call.method {
       case "getPlatformVersion" :
         result("iOS " + UIDevice.current.systemVersion);
+      case "getMessage" :
+        result("Hello from iOS");
+      case "getLocale" :
+        result(Locale.current.languageCode)
+    case "openSettings" :
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: { (successful) in
+                result(successful)
+            })
+        } else {
+            result(false)
+        }
       default:
         result(FlutterMethodNotImplemented)
     }

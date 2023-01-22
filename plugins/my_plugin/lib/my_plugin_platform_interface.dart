@@ -26,4 +26,16 @@ abstract class MyPluginPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<String?> getMessage() {
+    throw UnimplementedError('getMessage() has not been implemented.');
+  }
+
+  Future<String?> getLocale() {
+    throw UnimplementedError('getLocale() has not been implemented.');
+  }
+
+  Future<void> openSettings() {
+    throw UnimplementedError('openSettings() has not been implemented.');
+  }
 }
